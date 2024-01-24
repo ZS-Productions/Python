@@ -1,5 +1,4 @@
-import sqlite3
-import os
+import sqlite3, os, time, sys
 
 # Python Variables
 OutcomeID = 3
@@ -15,12 +14,20 @@ cho = (cur.execute("SELECT * FROM choices")).fetchall()
 outc = (cur.execute("SELECT * FROM outcomes")).fetchall()
 
 ### GAME START ###
+print("\nThe Adventure Game - Designed by ZS Productions\n")
+print("Game will be starting in...")
+for i in range(3, 0, -1):
+    print (i, end="\r")
+    time.sleep(1)
+    
 
+os.system('cls')
 # INTRO #
 print("You enter a cave there is a small waterway running through\nOn your right you see stairs leading up to another opening\nAlternatively you can go straight ahead and follow the water path.\n\n")
+nxt = input("Press enter to continue...")
 
 while True:
-        
+    os.system('cls')
     ## LOOP START
     OutcomeText = outc[OutcomeID - 1][1]
     required = outc[OutcomeID - 1][2]
@@ -42,6 +49,7 @@ while True:
         if OutcomeID == 1 or OutcomeID == 2:
             break
         OutcomeID = outc[OutcomeID - 1][3]
+        nxt = input("Press enter to continue...")
         continue
 
     # Obtain user choice input, must be within the constraints    
