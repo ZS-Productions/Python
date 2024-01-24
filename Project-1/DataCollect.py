@@ -1,4 +1,4 @@
-import sqlite3, os, time, sys
+import sqlite3, os, time
 
 # Python Variables
 OutcomeID = 3
@@ -12,7 +12,6 @@ cur = con.cursor()
 # Extract Database
 cho = (cur.execute("SELECT * FROM choices")).fetchall()
 outc = (cur.execute("SELECT * FROM outcomes")).fetchall()
-
 ### GAME START ###
 print("\nThe Adventure Game - Designed by ZS Productions\n")
 print("Game will be starting in...")
