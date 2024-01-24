@@ -1,13 +1,10 @@
 import sqlite3
+import os
 
 # Python Variables
-game = True
 OutcomeID = 3
 OutcomeText = ""
 required = 0
-Choice1 = 0
-Choice2 = 0
-Choice3 = 0
 
 # Start Database Connection
 con = sqlite3.connect("Story.db")
@@ -27,30 +24,24 @@ while True:
     ## LOOP START
     OutcomeText = outc[OutcomeID - 1][1]
     required = outc[OutcomeID - 1][2]
-
     # Obtain the ID of possible choices
-    Choice1 = outc[OutcomeID - 1][3]
-    Choice2 = outc[OutcomeID - 1][4]
-    Choice3 = outc[OutcomeID - 1][5]
-    Choices = [Choice1, Choice2, Choice3] # Compile in list
+    Choices = [outc[OutcomeID - 1][3], outc[OutcomeID - 1][4], outc[OutcomeID - 1][5]] # Compile in array
 
     print(OutcomeText + "\n") # Print Outcome Flavour Text
 
     # Check to see if its a choice or simply the next outcome dialogue
-    if required == 1: # It's a choice / List out the options
-        rep = 0
-        for i in Choices:
-            if(i != 0):
-                rep += 1
-                print(str(rep) + " ~ " + cho[i-1][1])
+    if required == 1: # The user needs to make a choice         
+        
+        # List out the available choices
+        for x, item in enumerate(Choices):
+            if(item != 0):
+                rep = x + 1
+                print(str(rep) + " ~ " + cho[item-1][1])
+               
     else: # Continue to next Outcome
         if OutcomeID == 1 or OutcomeID == 2:
             break
-        OutcomeID = Choice1
-        continue
-        
-    # Check Game
-    if OutcomeID == 1 or OutcomeID == 2:
+        OutcomeID = outc[OutcomeID - 1][3]
         continue
 
     # Obtain user choice input, must be within the constraints    
@@ -65,10 +56,12 @@ while True:
                 print("Please enter a number between 1 and " + str(rep))
                 continue
             else:
-                #print("NICE! You have chosen " + cho[Choices[option - 1] - 1][1])
-                print("\n")
+                print()
                 break
             
     OutcomeID = cho[Choices[option - 1] - 1][2]
+    
+# Close database connection
+con.close()
     
 
