@@ -64,9 +64,12 @@ def CheckWin(res):
         return 2 # Draw
     
 ### START GAME ###    
-print("Tic-Tac-Toe")
+print("\nTic Tac Toe - Designed by ZS Productions")
 print("Player 1 [X] --- Player 2 [O]\n")
-time.sleep(2)
+print("Game will be starting in...")
+for i in range(3, 0, -1):
+    print (i, end="\r")
+    time.sleep(1)
 
 # Loop until game finishes
 while True:
