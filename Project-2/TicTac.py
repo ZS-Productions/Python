@@ -1,5 +1,7 @@
+import os
+
 # Game Variables
-Game = 0
+Game = 0 #[0 = Default, 1 = Win, 2 = Draw]
 board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
 player = 1
 mark = 'X'
@@ -39,6 +41,7 @@ print("Tic-Tac-Toe")
 print("Player 1 [X] --- Player 2 [O]\n")
 
 while True:
+    os.system('cls')
     DrawBoard()
 
     if player % 2 != 0:
@@ -62,6 +65,7 @@ while True:
     board[choice] = mark
     player += 1
     Game = CheckWin()
+    os.system('cls')
     DrawBoard()
 
     if Game == 2:
