@@ -1,18 +1,36 @@
 import os
+import time
 
 # Game Variables
 Game = 0 #[0 = Default, 1 = Win, 2 = Draw]
-board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+board = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 player = 1
 mark = 'X'
 
-# Draw board function
-def DrawBoard():
-    print(" %c | %c | %c " % (board[1], board[2], board[3]))
-    print("-----------")
-    print(" %c | %c | %c " % (board[4], board[5], board[6]))
-    print("-----------")
-    print(" %c | %c | %c " % (board[7], board[8], board[9]))
+def DrawBoard(type):
+    if type == 0:
+        for step in range(1, 8, 3):         
+            print(" %c | %c | %c " % (board[step], board[step + 1], board[step + 2]))
+            if step != 7:
+                print("-----------")
+
+        print("\n")
+    elif type == 1:
+        disp = []
+        for step in board:
+            if step == 'X':
+                disp.append(step)
+            elif step == 'O':
+                disp.append(step)
+            else:
+                disp.append(' ')
+        for step in range(1, 8, 3):         
+            print(" %c | %c | %c " % (disp[step], disp[step + 1], disp[step + 2]))
+            if step != 7:
+                print("-----------")
+
+        print("\n")
+    
     
 # Check to see who's won the game    
 def CheckWin():
@@ -42,7 +60,7 @@ print("Player 1 [X] --- Player 2 [O]\n")
 
 while True:
     os.system('cls')
-    DrawBoard()
+    DrawBoard(0)
 
     if player % 2 != 0:
         print("Player 1's chance")
@@ -66,8 +84,8 @@ while True:
     player += 1
     Game = CheckWin()
     os.system('cls')
-    DrawBoard()
-
+    DrawBoard(1)
+    time.sleep(1)
     if Game == 2:
         print("Game Draw")
     elif Game == 1:
