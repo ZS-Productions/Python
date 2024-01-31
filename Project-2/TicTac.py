@@ -66,7 +66,7 @@ def CheckWin(res):
 ### START GAME ###    
 print("Tic-Tac-Toe")
 print("Player 1 [X] --- Player 2 [O]\n")
-time.sleep(3)
+time.sleep(2)
 
 # Loop until game finishes
 while True:
@@ -86,9 +86,11 @@ while True:
         try:
             choice = int(input("Enter the position between [1-9] where you want to mark: "))
         except ValueError:
-            print("Please enter a number between 1-9\n")
+            continue
         else:
             if(choice < 1 or choice > 9):
+                continue
+            elif(board[choice] == 'X' or board[choice] == 'O'):
                 continue
             else:
                 break
